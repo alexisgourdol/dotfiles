@@ -46,6 +46,10 @@
 
 [branch "master"]
   mergeoptions = --no-edit
+
 [user]
 	email = alexis.gourdol@gmail.com
 	name = Alexis Gourdol
+
+[pull]
+  rebase = false
