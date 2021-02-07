@@ -79,5 +79,5 @@ export LC_ALL=en_US.UTF-8
 # Commenting PYTHONPATH of batch 450 to use the one for the TA's role in batch 469
 #export PYTHONPATH="/Users/alexisgourdol/code/alexisgourdol/data-challenges-450/04-Decision-Science:$PYTHONPATH"
 #export PYTHONPATH="/Users/alexisgourdol/code/alexisgourdol/data-challenges-469/04-Decision-Science:$PYTHONPATH"
-#export PYTHONPATH="/Users/alexisgourdol/code/alexisgourdol/data-challenges-555/04-Decision-Science:$PYTHONPATH"
+export PYTHONPATH="/Users/alexisgourdol/code/alexisgourdol/data-challenges-555/04-Decision-Science:$PYTHONPATH"
 export PYTHONPATH="/Users/alexisgourdol/code/alexisgourdol/IIPE-data:$PYTHONPATH"
