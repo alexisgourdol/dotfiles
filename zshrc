@@ -2,14 +2,15 @@ ZSH=$HOME/.oh-my-zsh
 
 # You can change the theme with another one from https://github.com/robbyrussell/oh-my-zsh/wiki/themes
 ZSH_THEME="agnoster"
-DEFAULT_USER="alexisgourdol"
-prompt_context(){}
 
 # Useful oh-my-zsh plugins for Le Wagon bootcamps
-plugins=(git gitfast last-working-dir common-aliases sublime zsh-syntax-highlighting history-substring-search pyenv)
+plugins=(git gitfast last-working-dir common-aliases zsh-syntax-highlighting history-substring-search pyenv)
 
 # (macOS-only) Prevent Homebrew from reporting - https://github.com/Homebrew/brew/blob/master/docs/Analytics.md
 export HOMEBREW_NO_ANALYTICS=1
+
+# Disable warning about insecure completion-dependent directories
+ZSH_DISABLE_COMPFIX=true
 
 # Actually load Oh-My-Zsh
 source "${ZSH}/oh-my-zsh.sh"
@@ -20,53 +21,42 @@ export PATH="${HOME}/.rbenv/bin:${PATH}" # Needed for Linux/WSL
 type -a rbenv > /dev/null && eval "$(rbenv init -)"
 
 # Load pyenv (to manage your Python versions)
-#export PATH="${HOME}/.pyenv/bin:${PATH}" # Needed for Linux/WSL
-
-#TEST June 2020 to make pyenv local change venvs when entering/leaving folders => fail .zshrc:25: parse error near `then'
-export PATH="$HOME/.pyenv/bin:$PATH" #if command -v pyenv 1>/dev/null 2>&1; then eval "$(pyenv init -)" fi
-
+export PATH="${HOME}/.pyenv/bin:${PATH}" # Needed for Linux/WSL
 export PYENV_VIRTUALENV_DISABLE_PROMPT=1 # https://github.com/pyenv/pyenv-virtualenv/issues/135
+type -a pyenv > /dev/null && eval "$(pyenv init -)" && eval "$(pyenv virtualenv-init -)" && RPROMPT+='[🐍 $(pyenv_prompt_info)]'
 
-#NEW :
-#type -a pyenv > /dev/null && eval "$(pyenv init -)" && eval "$(pyenv virtualenv-init -)" && RPROMPT+='[🐍 $(pyenv_prompt_info)]'
+# Load nvm (to manage your node versions)
+export NVM_DIR="$HOME/.nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
+[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
 
-#OLD :
-#pyenv activate lewagon 2>/dev/null && echo "🐍 Loading 'lewagon' virtualenv"
+# Call `nvm use` automatically in a directory with a `.nvmrc` file
+# autoload -U add-zsh-hook
+# load-nvmrc() {
+#   if nvm -v &> /dev/null; then
+#     local node_version="$(nvm version)"
+#     local nvmrc_path="$(nvm_find_nvmrc)"
 
-#TEST :
-pyenv activate lewagon 2>/dev/null && eval "$(pyenv init -)" && eval "$(pyenv virtualenv-init -)" && RPROMPT+='[🐍 $(pyenv_prompt_info)]'
+#     if [ -n "$nvmrc_path" ]; then
+#       local nvmrc_node_version=$(nvm version "$(cat "${nvmrc_path}")")
 
-
-## Load nvm (to manage your node versions)
-#export NVM_DIR="$HOME/.nvm"
-#[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
-#[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion#
-
-## Call `nvm use` automatically in a directory with a `.nvmrc` file
-#autoload -U add-zsh-hook
-#load-nvmrc() {
-#  local node_version="$(nvm version)"
-#  local nvmrc_path="$(nvm_find_nvmrc)"
-#
-#  if [ -n "$nvmrc_path" ]; then
-#    local nvmrc_node_version=$(nvm version "$(cat "${nvmrc_path}")")
-#
-#    if [ "$nvmrc_node_version" = "N/A" ]; then
-#      nvm install
-#    elif [ "$nvmrc_node_version" != "$node_version" ]; then
-#      nvm use --silent
-#    fi
-#  elif [ "$node_version" != "$(nvm version default)" ]; then
-#    nvm use default --silent
-#  fi
-#}
-#add-zsh-hook chpwd load-nvmrc
-#load-nvmrc
+#       if [ "$nvmrc_node_version" = "N/A" ]; then
+#         nvm install
+#       elif [ "$nvmrc_node_version" != "$node_version" ]; then
+#         nvm use --silent
+#       fi
+#     elif [ "$node_version" != "$(nvm version default)" ]; then
+#       nvm use default --silent
+#     fi
+#   fi
+# }
+# type -a nvm > /dev/null && add-zsh-hook chpwd load-nvmrc
+# type -a nvm > /dev/null && load-nvmrc
 
 # Rails and Ruby uses the local `bin` folder to store binstubs.
 # So instead of running `bin/rails` like the doc says, just run `rails`
 # Same for `./node_modules/.bin` and nodejs
-export PATH="./bin:./node_modules/.bin:${PATH}:/usr/local/sbin"
+#export PATH="./bin:./node_modules/.bin:${PATH}:/usr/local/sbin"
 
 # Store your own aliases in the ~/.aliases file and load the here.
 [[ -f "$HOME/.aliases" ]] && source "$HOME/.aliases"
@@ -75,11 +65,6 @@ export PATH="./bin:./node_modules/.bin:${PATH}:/usr/local/sbin"
 export LANG=en_US.UTF-8
 export LC_ALL=en_US.UTF-8
 
-# From old dotfiles, keepin just in case:
-#export BUNDLER_EDITOR="'/Applications/Sublime Text.app/Contents/SharedSupport/bin/subl' -a"
-
-# Commenting PYTHONPATH of batch 450 to use the one for the TA's role in batch 469
-#export PYTHONPATH="/Users/alexisgourdol/code/alexisgourdol/data-challenges-450/04-Decision-Science:$PYTHONPATH"
-#export PYTHONPATH="/Users/alexisgourdol/code/alexisgourdol/data-challenges-469/04-Decision-Science:$PYTHONPATH"
 export PYTHONPATH="/Users/alexisgourdol/code/alexisgourdol/data-challenges-555/04-Decision-Science:$PYTHONPATH"
 export PYTHONPATH="/Users/alexisgourdol/code/alexisgourdol/IIPE-data:$PYTHONPATH"
+export BUNDLER_EDITOR=code
