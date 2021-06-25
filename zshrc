@@ -20,7 +20,11 @@ export PATH="${HOME}/.rbenv/bin:${PATH}" # Needed for Linux/WSL
 type -a rbenv > /dev/null && eval "$(rbenv init -)"
 
 # Load pyenv (to manage your Python versions)
-export PATH="${HOME}/.pyenv/bin:${PATH}" # Needed for Linux/WSL
+#export PATH="${HOME}/.pyenv/bin:${PATH}" # Needed for Linux/WSL
+
+#TEST June 2020 to make pyenv local change venvs when entering/leaving folders => fail .zshrc:25: parse error near `then'
+export PATH="$HOME/.pyenv/bin:$PATH" #if command -v pyenv 1>/dev/null 2>&1; then eval "$(pyenv init -)" fi
+
 export PYENV_VIRTUALENV_DISABLE_PROMPT=1 # https://github.com/pyenv/pyenv-virtualenv/issues/135
 
 #NEW :
@@ -31,8 +35,6 @@ export PYENV_VIRTUALENV_DISABLE_PROMPT=1 # https://github.com/pyenv/pyenv-virtua
 
 #TEST :
 pyenv activate lewagon 2>/dev/null && eval "$(pyenv init -)" && eval "$(pyenv virtualenv-init -)" && RPROMPT+='[🐍 $(pyenv_prompt_info)]'
-
-
 
 
 ## Load nvm (to manage your node versions)
