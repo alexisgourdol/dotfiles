@@ -23,9 +23,10 @@ export PATH="${HOME}/.rbenv/bin:${PATH}" # Needed for Linux/WSL
 type -a rbenv > /dev/null && eval "$(rbenv init -)"
 
 # Load pyenv (to manage your Python versions)
-export PATH="${HOME}/.pyenv/bin:${PATH}" # Needed for Linux/WSL
+# commenting out export PATH => https://github.com/lewagon/dotfiles/commit/f61c2b106ca50e5e4701081a5d7043c54a8f4734?branch=f61c2b106ca50e5e4701081a5d7043c54a8f4734&diff=split
+# export PATH="${HOME}/.pyenv/bin:${PATH}" # Needed for Linux/WSL
 export PYENV_VIRTUALENV_DISABLE_PROMPT=1 # https://github.com/pyenv/pyenv-virtualenv/issues/135
-type -a pyenv > /dev/null && eval "$(pyenv init --path)" && eval "$(pyenv virtualenv-init -)" && RPROMPT+='[🐍 $(pyenv_prompt_info)]'
+type -a pyenv > /dev/null && eval "$(pyenv init -)" && eval "$(pyenv virtualenv-init -)" && RPROMPT+='[🐍 $(pyenv_prompt_info)]'
 
 # Load nvm (to manage your node versions)
 export NVM_DIR="$HOME/.nvm"
@@ -67,6 +68,13 @@ export NVM_DIR="$HOME/.nvm"
 export LANG=en_US.UTF-8
 export LC_ALL=en_US.UTF-8
 
-export PYTHONPATH="/Users/alexisgourdol/code/alexisgourdol/data-challenges-555/04-Decision-Science:$PYTHONPATH"
-export PYTHONPATH="/Users/alexisgourdol/code/alexisgourdol/IIPE-data:$PYTHONPATH"
+# Set ipdb as the default debugger when using `breakpoint()` in Python (new in 3.7)
+export PYTHONBREAKPOINT=ipdb.set_trace
+
+export PYTHONPATH="/Users/alexisgourdol/code/alexisgourdol/data-challenges-745/04-Decision-Science:$PYTHONPATH"
+export PYTHONPATH="/Users/alexisgourdol/code/alexisgourdol/sandbox/lewagon-project:$PYTHONPATH"
+
+#export PYTHONPATH="/Users/alexisgourdol/code/alexisgourdol/data-challenges-555/04-Decision-Science:$PYTHONPATH"
+#export PYTHONPATH="/Users/alexisgourdol/code/alexisgourdol/IIPE-data:$PYTHONPATH"
 export BUNDLER_EDITOR=code
+

@@ -13,6 +13,7 @@ alias ag="cd /Users/alexisgourdol/code/alexisgourdol && pwd && ls"
 
 # Shortcut to launch vs code
 alias vs="code ."
+alias nano='/usr/local/bin/nano'
 alias tree="tree -C"
 
 export GOOGLE_APPLICATION_CREDENTIALS=/Users/alexisgourdol/Documents/lewagon/gcp_keys/Wagon_Bootcamp-7a4daabe7dbf.json
