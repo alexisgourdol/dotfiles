@@ -78,3 +78,7 @@ export PYTHONPATH="/Users/alexisgourdol/code/alexisgourdol/sandbox/lewagon-proje
 #export PYTHONPATH="/Users/alexisgourdol/code/alexisgourdol/IIPE-data:$PYTHONPATH"
 export BUNDLER_EDITOR=code
 
+export BUNDLER_EDITOR="'/Applications/Sublime Text.app/Contents/SharedSupport/bin/subl' -a"
+export BUNDLER_EDITOR="'/Applications/Sublime Text.app/Contents/SharedSupport/bin/subl' -a"
+export BUNDLER_EDITOR="'/Applications/Sublime Text.app/Contents/SharedSupport/bin/subl' -a"
+export BUNDLER_EDITOR="'/Applications/Sublime Text.app/Contents/SharedSupport/bin/subl' -a"
