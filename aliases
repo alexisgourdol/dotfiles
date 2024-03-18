@@ -9,12 +9,15 @@ alias serve='ruby -run -e httpd . -p 8000' # Or python -m SimpleHTTPServer :)
 alias juno="jupyter notebook"
 
 # Shortcut to /Users/alexisgourdol/code/alexisgourdol folder
-alias ag="cd /Users/alexisgourdol/code/alexisgourdol && pwd && ls"
+alias ln="cd /Users/ln/code && pwd && ls"
 
 # Shortcut to launch vs code
-alias vs="code ."
 alias nano='/usr/local/bin/nano'
 alias tree="tree -C"
 
-export GOOGLE_APPLICATION_CREDENTIALS=/Users/alexisgourdol/Documents/lewagon/gcp_keys/Wagon_Bootcamp-7a4daabe7dbf.json
+##
+alias brew="/opt/homebrew/bin/brew"
 
+#To get the block height of the latest blocks, read the output of this command
+alias last15="lumd query block --node \"https://node0.mainnet.lum.network:443/rpc\""
+alias bondedtokens="lumd query staking pool --node \"https://node0.mainnet.lum.network:443/rpc\""

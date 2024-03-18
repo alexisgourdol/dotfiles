@@ -2,7 +2,7 @@ ZSH=$HOME/.oh-my-zsh
 
 # You can change the theme with another one from https://github.com/robbyrussell/oh-my-zsh/wiki/themes
 ZSH_THEME="agnoster"
-DEFAULT_USER="alexisgourdol"
+DEFAULT_USER="ln"
 prompt_context(){}
 
 # Useful oh-my-zsh plugins for Le Wagon bootcamps
@@ -82,3 +82,20 @@ export BUNDLER_EDITOR="'/Applications/Sublime Text.app/Contents/SharedSupport/bi
 export BUNDLER_EDITOR="'/Applications/Sublime Text.app/Contents/SharedSupport/bin/subl' -a"
 export BUNDLER_EDITOR="'/Applications/Sublime Text.app/Contents/SharedSupport/bin/subl' -a"
 export BUNDLER_EDITOR="'/Applications/Sublime Text.app/Contents/SharedSupport/bin/subl' -a"
+
+## Lumd exports
+export GOPATH=$HOME/dev/go
+export GOBIN=$GOPATH/bin
+export GO111MODULE=on
+export PATH=$PATH:$GOBIN
+
+export PATH="/opt/homebrew/opt/coreutils/libexec/gnubin:$PATH"
+export PATH="/opt/homebrew/bin:$PATH"
+export PATH="/Users/ln/dev/go/bin:$PATH"
+
+
+#export NVM_DIR="$([ -z "${XDG_CONFIG_HOME-}" ] && printf %s "${HOME}/.nvm" || printf %s "${XDG_CONFIG_HOME}/nvm")"
+#[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh" # This loads nvm
+
+# Created by `pipx` on 2024-03-15 21:13:41
+export PATH="$PATH:/Users/ln/.local/bin"
