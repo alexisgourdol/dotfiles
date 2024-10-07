@@ -99,3 +99,6 @@ export PATH="/Users/ln/dev/go/bin:$PATH"
 
 # Created by `pipx` on 2024-03-15 21:13:41
 export PATH="$PATH:/Users/ln/.local/bin"
+
+#mysql server
+export PATH="$PATH:/usr/local/mysql/bin"
