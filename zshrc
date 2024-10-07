@@ -102,3 +102,4 @@ export PATH="$PATH:/Users/ln/.local/bin"
 
 #mysql server
 export PATH="$PATH:/usr/local/mysql/bin"
+export BUNDLER_EDITOR="subl $@ >/dev/null 2>&1 -a"
