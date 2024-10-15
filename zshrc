@@ -71,23 +71,19 @@ export LC_ALL=en_US.UTF-8
 # Set ipdb as the default debugger when using `breakpoint()` in Python (new in 3.7)
 export PYTHONBREAKPOINT=ipdb.set_trace
 
-export PYTHONPATH="/Users/alexisgourdol/code/alexisgourdol/data-challenges-745/04-Decision-Science:$PYTHONPATH"
-export PYTHONPATH="/Users/alexisgourdol/code/alexisgourdol/sandbox/lewagon-project:$PYTHONPATH"
-
+#export PYTHONPATH="/Users/alexisgourdol/code/alexisgourdol/data-challenges-745/04-Decision-Science:$PYTHONPATH"
+#export PYTHONPATH="/Users/alexisgourdol/code/alexisgourdol/sandbox/lewagon-project:$PYTHONPATH"
 #export PYTHONPATH="/Users/alexisgourdol/code/alexisgourdol/data-challenges-555/04-Decision-Science:$PYTHONPATH"
 #export PYTHONPATH="/Users/alexisgourdol/code/alexisgourdol/IIPE-data:$PYTHONPATH"
 export BUNDLER_EDITOR=code
 
 export BUNDLER_EDITOR="'/Applications/Sublime Text.app/Contents/SharedSupport/bin/subl' -a"
-export BUNDLER_EDITOR="'/Applications/Sublime Text.app/Contents/SharedSupport/bin/subl' -a"
-export BUNDLER_EDITOR="'/Applications/Sublime Text.app/Contents/SharedSupport/bin/subl' -a"
-export BUNDLER_EDITOR="'/Applications/Sublime Text.app/Contents/SharedSupport/bin/subl' -a"
 
 ## Lumd exports
-export GOPATH=$HOME/dev/go
-export GOBIN=$GOPATH/bin
-export GO111MODULE=on
-export PATH=$PATH:$GOBIN
+#export GOPATH=$HOME/dev/go
+#export GOBIN=$GOPATH/bin
+#export GO111MODULE=on
+#export PATH=$PATH:$GOBIN
 
 export PATH="/opt/homebrew/opt/coreutils/libexec/gnubin:$PATH"
 export PATH="/opt/homebrew/bin:$PATH"
