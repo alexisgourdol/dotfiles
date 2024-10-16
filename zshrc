@@ -101,6 +101,16 @@ export PATH="$PATH:/Users/ln/.local/bin"
 export PATH="$PATH:/usr/local/mysql/bin"
 export BUNDLER_EDITOR="subl $@ >/dev/null 2>&1 -a"
 
+export SPARK_HOME=/home/alexis.gourdol/spark/spark-3.5.3-bin-hadoop3
+export PATH=$PATH:$SPARK_HOME/bin
+
+# Created by `pipx` on 2024-10-07 12:39:19 on remote VM
+export PATH="$PATH:/home/alexis.gourdol/.local/bin"
+
+export PYENV_ROOT="$HOME/.pyenv"
+export PATH="$PYENV_ROOT/bin:$PATH"
+eval "$(pyenv init --path)"
+
 #add a newline to the prompt
 prompt_end() {
   if [[ -n $CURRENT_BG ]]; then
