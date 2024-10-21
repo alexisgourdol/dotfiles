@@ -21,3 +21,6 @@ alias bondedtokens="lumd query staking pool --node \"https://node0.mainnet.lum.n
 
 # to log into the DE LW Virtual Machine
 alias sshgcp="ssh lw-de-vm"
+
+# clear and keep two line prompt visible
+alias c='tput reset'
