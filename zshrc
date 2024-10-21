@@ -5,6 +5,7 @@ ZSH_THEME="agnoster"
 DEFAULT_USER="ln"
 prompt_context(){}
 
+
 # Useful oh-my-zsh plugins for Le Wagon bootcamps
 # To solve "[oh-my-zsh] plugin 'zsh-syntax-highlighting' not found" => removed zsh-syntax-highlighting as per https://github.com/ohmyzsh/ohmyzsh/issues/7690
 plugins=(git gitfast last-working-dir common-aliases history-substring-search pyenv docker docker-compose ssh-agent direnv)
@@ -110,6 +111,13 @@ export PATH="$PATH:/home/alexis.gourdol/.local/bin"
 export PYENV_ROOT="$HOME/.pyenv"
 export PATH="$PYENV_ROOT/bin:$PATH"
 eval "$(pyenv init --path)"
+
+
+# show only last 3 parent directories as per https://github.com/agnoster/agnoster-zsh-theme/issues/19#issuecomment-1159333809
+prompt_dir() {
+  prompt_segment blue $CURRENT_FG '%3~'
+}
+
 
 #add a newline to the prompt as per https://stackoverflow.com/questions/41017917/add-newline-to-oh-my-zsh-theme Felix Dombek's answer
 prompt_end() {
