@@ -91,7 +91,7 @@ export PATH=$GOPATH/bin:$GOROOT/bin:$HOME/.local/bin:$PATH
 export OPENAI_API_KEY=$(awk 'NR==1' ~/.openai/openai_api_key.txt)
 
 # Define the base directory for Obsidian notes
-obsidian_base="/path/to/obsidian"
+obsidian_base="$HOME/code/alexisgourdol/obsidian-synch/01-zettlekasten"
 
 # Loop through all files in the ~/.config/fabric/patterns directory
 for pattern_file in ~/.config/fabric/patterns/*; do
