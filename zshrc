@@ -1,3 +1,4 @@
+
 ZSH=$HOME/.oh-my-zsh
 ZSH_THEME="agnoster"
 DEFAULT_USER="ln"
@@ -60,7 +61,8 @@ export SPARK_HOME=/home/alexis.gourdol/spark/spark-3.5.3-bin-hadoop3
 export PATH=$PATH:$SPARK_HOME/bin
 
 export PYENV_ROOT="$HOME/.pyenv"
-export PATH="$PYENV_ROOT/bin:$PATH"
+# export PATH="$PYENV_ROOT/bin:$PATH" # switch to updated pyenv installed with brew l 48
+
 eval "$(pyenv init --path)"
 
 
