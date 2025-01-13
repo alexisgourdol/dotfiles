@@ -126,3 +126,7 @@ yt() {
     local video_link="$1"
     fabric -y "$video_link" --transcript
 }
+
+# Added by Windsurf
+export PATH="/Users/ln/.codeium/windsurf/bin:$PATH"
+eval "$(rbenv init -)"
