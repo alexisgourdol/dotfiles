@@ -1,0 +1,93 @@
+
+yt() {
+    local video_link="$1"
+    fabric -y "$video_link" --transcript
+}
+
+# summarize video and create a summary note in obsidian with video metadata
+ytsum () {
+    local video_url="$1"
+    local optional_category="${2:-}"
+    local date_stamp=$(date +'%Y-%m-%d')
+
+    # Get metadata as JSON
+    local metadata=$(fabric -y "$video_url" --metadata 2>&1)
+
+    # Parse JSON with error handling
+    if command -v jq &> /dev/null; then
+        local channel=$(echo "$metadata" | jq -r '.channelTitle // "Unknown-Channel"' 2>/dev/null)
+        local title=$(echo "$metadata" | jq -r '.title // "Unknown-Title"' 2>/dev/null)
+    else
+        # Fallback parsing without jq
+        local channel=$(echo "$metadata" | grep '"channelTitle"' | sed 's/.*"channelTitle": "\([^"]*\)".*/\1/' | head -1)
+        local title=$(echo "$metadata" | grep '"title"' | sed 's/.*"title": "\([^"]*\)".*/\1/' | head -1)
+    fi
+
+    # Fallback if parsing completely fails
+    if [ -z "$channel" ] || [ "$channel" = "null" ]; then
+        channel="Unknown-Channel"
+    fi
+    if [ -z "$title" ] || [ "$title" = "null" ]; then
+        title="Unknown-Title"
+    fi
+
+    # Clean up for filename - remove ALL problematic characters
+    channel=$(echo "$channel" | sed 's/[^a-zA-Z0-9 -]//g' | tr ' ' '-' | sed 's/--*/-/g')
+    title=$(echo "$title" | sed 's/[^a-zA-Z0-9 -]//g' | tr ' ' '-' | sed 's/--*/-/g')
+
+    # Build filename
+    if [ -n "$optional_category" ]; then
+        local output_path="$obsidian_base/${date_stamp} - ${optional_category} - ${channel} - ${title}.md"
+    else
+        local output_path="$obsidian_base/${date_stamp} - ${channel} - ${title}.md"
+    fi
+
+    echo "📝 Fetching transcript and generating summary..."
+    echo "📺 Channel: $channel"
+    echo "🎬 Title: $title"
+
+    # Get transcript once and store it
+    local transcript=$(fabric -y "$video_url" --transcript 2>&1)
+
+    # Check if transcript fetch failed
+    if echo "$transcript" | grep -qi "rate limit\|error:\|failed\|exit status"; then
+        echo "❌ Error: Failed to fetch transcript from YouTube."
+        echo ""
+        echo "Error details:"
+        echo "$transcript"
+        echo ""
+        echo "💡 Suggestions:"
+        echo "  - Wait a few minutes and try again (YouTube rate limit)"
+        echo "  - Check if the video has captions/subtitles available"
+        echo "  - Try: fabric -y \"$video_url\" --transcript --sleep-requests 1"
+        return 1
+    fi
+
+    # Check if transcript is empty or too short
+    if [ -z "$transcript" ] || [ ${#transcript} -lt 50 ]; then
+        echo "❌ Error: Transcript is empty or too short."
+        echo "💡 The video may not have captions available."
+        return 1
+    fi
+
+    # Generate summary from transcript - capture both stdout and stderr
+    local temp_error=$(mktemp)
+
+    if echo "$transcript" | fabric --pattern "summarize" -o "$output_path" 2>"$temp_error"; then
+        # Append transcript to the file
+        echo -e "\n\n---\n\n## Full Transcript\n\n$transcript" >> "$output_path"
+
+        # Append raw metadata JSON to the file
+        echo -e "\n\n---\n\n## Video Metadata\n\n\`\`\`json\n$metadata\n\`\`\`" >> "$output_path"
+
+        echo "✅ Summary saved to: $output_path"
+        rm "$temp_error"
+    else
+        echo "❌ Error: Summary generation failed."
+        echo ""
+        echo "Error details:"
+        cat "$temp_error"
+        rm "$temp_error"
+        return 1
+    fi
+}

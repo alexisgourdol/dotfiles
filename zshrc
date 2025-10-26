@@ -82,6 +82,12 @@ prompt_end() {
   echo -n "\n%{%F{$CURRENT_BG}%}$SEGMENT_SEPARATOR%{%f%}"
   CURRENT_BG=''
 }
+# adjust blue and green
+    # in VS code with https://www.reddit.com/r/vscode/comments/1dit1kc/comment/l96hovu/?utm_source=share&utm_medium=web3x&utm_name=web3xcss&utm_term=1&utm_content=share_button
+        # "workbench.colorCustomizations": {
+        # "terminal.ansiBlue": "#77a8e6",
+        # "terminal.ansiGreen": "#a3b637",
+    # in iTerm : Settings > Profile > Color
 
 ####################################################################
 ######### 2024-12-24 add GO env vars to use Fabric CLI LLM #########
@@ -122,11 +128,14 @@ for pattern_file in ~/.config/fabric/patterns/*; do
     "
 done
 
-yt() {
-    local video_link="$1"
-    fabric -y "$video_link" --transcript
-}
+# Get the directory where this .zshrc file is located
+DOTFILES_DIR="${${(%):-%x}:A:h}"
 
-# Added by Windsurf
-export PATH="/Users/ln/.codeium/windsurf/bin:$PATH"
-eval "$(rbenv init -)"
+# Source custom functions
+if [ -f "$DOTFILES_DIR/.zsh_functions" ]; then
+    source "$DOTFILES_DIR/.zsh_functions"
+fi
+
+# Added by Windsurf => commented out Oct 2025 as I am not using Windsurf anymore
+# export PATH="/Users/ln/.codeium/windsurf/bin:$PATH"
+# eval "$(rbenv init -)"
