@@ -96,37 +96,11 @@ prompt_end() {
 export GOROOT=$(brew --prefix go)/libexec
 export GOPATH=$HOME/go
 export PATH=$GOPATH/bin:$GOROOT/bin:$HOME/.local/bin:$PATH
-export OPENAI_API_KEY=$(awk 'NR==1' ~/.openai/openai_api_key.txt)
+export ANTHROPIC_API_KEY=$(awk 'NR==1' ~/.claude/api_key)
 
 # Define the base directory for Obsidian notes
 obsidian_base="$HOME/code/alexisgourdol/obsidian-synch/01-zettlekasten"
 
-# Loop through all files in the ~/.config/fabric/patterns directory
-for pattern_file in ~/.config/fabric/patterns/*; do
-    # Get the base name of the file (i.e., remove the directory path)
-    pattern_name=$(basename "$pattern_file")
-
-    # Unalias any existing alias with the same name
-    unalias "$pattern_name" 2>/dev/null
-
-    # Define a function dynamically for each pattern
-    eval "
-    $pattern_name() {
-        local title=\$1
-        local date_stamp=\$(date +'%Y-%m-%d')
-        local output_path=\"\$obsidian_base/\${date_stamp}-\${title}.md\"
-
-        # Check if a title was provided
-        if [ -n \"\$title\" ]; then
-            # If a title is provided, use the output path
-            fabric --pattern \"$pattern_name\" -o \"\$output_path\"
-        else
-            # If no title is provided, use --stream
-            fabric --pattern \"$pattern_name\" --stream
-        fi
-    }
-    "
-done
 
 # Get the directory where this .zshrc file is located
 DOTFILES_DIR="${${(%):-%x}:A:h}"
@@ -135,7 +109,3 @@ DOTFILES_DIR="${${(%):-%x}:A:h}"
 if [ -f "$DOTFILES_DIR/.zsh_functions" ]; then
     source "$DOTFILES_DIR/.zsh_functions"
 fi
-
-# Added by Windsurf => commented out Oct 2025 as I am not using Windsurf anymore
-# export PATH="/Users/ln/.codeium/windsurf/bin:$PATH"
-# eval "$(rbenv init -)"
