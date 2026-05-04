@@ -1,9 +1,8 @@
 # Get External IP / Internet Speed
 alias myip="curl https://ipinfo.io/json" # or /ip for plain-text ip
-alias speedtest="curl -s https://raw.githubusercontent.com/sivel/speedtest-cli/master/speedtest.py | python -"
 
 # Quickly serve the current directory as HTTP
-alias serve='ruby -run -e httpd . -p 8000' # Or python -m SimpleHTTPServer :)
+alias serve='python -m http.server 8000'
 
 # Shortcut to launch a notebook
 alias juno="jupyter notebook"
@@ -14,10 +13,6 @@ alias tree="tree -C"
 
 ##
 alias brew="/opt/homebrew/bin/brew"
-
-#To get the block height of the latest blocks, read the output of this command
-alias last15="lumd query block --node \"https://node0.mainnet.lum.network:443/rpc\""
-alias bondedtokens="lumd query staking pool --node \"https://node0.mainnet.lum.network:443/rpc\""
 
 # to log into the DE LW Virtual Machine
 alias sshgcp="ssh lw-de-vm"
