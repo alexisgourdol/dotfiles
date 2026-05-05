@@ -97,13 +97,5 @@ export ANTHROPIC_API_KEY=$(awk 'NR==1' ~/.claude/api_key)
 ####################################################################
 ########################## OBSIDIAN ################################
 ####################################################################
-# Define the base directory for Obsidian notes
-obsidian_base="$HOME/code/alexisgourdol/obsidian-synch/01-zettlekasten"
 # Define the default directory for notes generated via youtube-summarizer
 export YTSUM_SAVE_DIR="$HOME/code/alexisgourdol/obsidian-synch/01-zettlekasten"
-
-####################################################################
-########################## DOTFILES ################################
-####################################################################
-# Get the directory where this .zshrc file is located
-DOTFILES_DIR="${${(%):-%x}:A:h}"
